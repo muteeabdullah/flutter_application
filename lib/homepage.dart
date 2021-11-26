@@ -5,9 +5,16 @@ class homepage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: Text('this is homepage',
-      textScaleFactor: 2,),
+    return const Material(
+      child: 
+      Center(
+        child: Text('this is homepage',
+      textAlign: TextAlign.center,
+      textScaleFactor: 3,
+      ),
+      )
+      
+      
     ); 
       
       
