@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +11,7 @@ class mydrawer extends StatelessWidget {
      final imageurl = "https://st.depositphotos.com/1342206/1463/i/600/depositphotos_14634185-stock-photo-hackers-concept-digital-illustration.jpg";
     return Drawer(
         child: Container(
-           color: Colors.blue,
+           color: Colors.deepPurple,
           child: ListView(
             // ignore: prefer_const_literals_to_create_immutables
             children: [
@@ -22,14 +21,14 @@ class mydrawer extends StatelessWidget {
                 UserAccountsDrawerHeader(
                   margin: EdgeInsets.zero,
                   
-                  accountEmail: Text('samikaka0987@gmail.com'),
+                  accountEmail: const Text('samikaka0987@gmail.com'),
                   accountName: Text('mutee abdullah'),
                   currentAccountPicture: CircleAvatar(
                     backgroundImage: NetworkImage(imageurl),
                   ),
                   ),
               ),
-              ListTile(
+              const ListTile(
                 leading: Icon(CupertinoIcons.home,
                 color: Colors.white,),
                 title: Text('Home',
@@ -39,7 +38,7 @@ class mydrawer extends StatelessWidget {
                 ),
                 ),
               ),
-              ListTile(
+              const ListTile(
                 leading: Icon(CupertinoIcons.profile_circled,
                 color: Colors.white,),
                 title: Text('Profile',

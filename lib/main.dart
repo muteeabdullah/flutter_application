@@ -16,6 +16,13 @@ class myapp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         fontFamily: GoogleFonts.lato().fontFamily,
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.white,
+          elevation: 0.1,
+          iconTheme: const IconThemeData(color: Colors.black),
+          // ignore: deprecated_member_use
+          textTheme: Theme.of(context).textTheme,
+        ),
       ),
       darkTheme: ThemeData(primarySwatch: Colors.green),
             debugShowCheckedModeBanner: false,

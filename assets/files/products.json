@@ -1,0 +1,84 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "name": "iphone 12",
+            "price": 999,
+            "description": "iphone 12 red colour",
+            "image": "https://3g.co.uk/userfiles/products/n_1433-1.jpg",
+            "color": "red"
+        },
+        {
+            "id": 2,
+            "name": "Xiaomi 12",
+            "price": 1200,
+            "description": "Xiaomi 12 grey",
+            "image": "https://i.gadgets360cdn.com/large/xiaomi_12_image_1640703696711.jpg?downsize=950:*",
+            "color": "grey"
+        },
+        {
+            "id": 3,
+            "name": "Samsung Galaxy S21 Ultra",
+            "price": 2000,
+            "description": "iphone 12 red colour",
+            "image": "https://images.priceoye.pk/samsung-galaxy-s21-ultra-pakistan-priceoye-ps2pg-500x500.webp",
+            "color": "black"
+        },
+        {
+            "id": 4,
+            "name": "vivo x60 pro",
+            "price": 780,
+            "description": "iphone 12 red colour",
+            "image": "https://fdn2.gsmarena.com/vv/pics/vivo/vivo-x60-pro-global-3.jpg",
+            "color": "white"
+        },
+        {
+            "id": 5,
+            "name": "oppo reno 6 pro 5G",
+            "price": 550,
+            "description": "iphone 12 red colour",
+            "image": "https://images.priceoye.pk/oppo-reno-6-pakistan-priceoye-t2zm4-500x500.webp",
+            "color": "white"
+        },
+        {
+            "id": 6,
+            "name": "lenovo z6 pro",
+            "price": 500,
+            "description": "iphone 12 red colour",
+            "image": "https://fdn2.gsmarena.com/vv/pics/lenovo/lenovo-z6-pro-2.jpg",
+            "color": "red"
+        },
+        {
+            "id": 7,
+            "name": "motorola moto z4",
+            "price": 300,
+            "description": "iphone 12 red colour",
+            "image": "https://fdn2.gsmarena.com/vv/pics/motorola/motorola-moto-z4-r.jpg",
+            "color": "red"
+        },
+        {
+            "id": 8,
+            "name": "Qmobile z4",
+            "price": 150,
+            "description": "iphone 12 red colour",
+            "image": "https://fdn2.gsmarena.com/vv/pics/qmobile/qmobile-noir-z4.jpg",
+            "color": "black"
+        },
+        {
+            "id": 9,
+            "name": "one plus 9 pro",
+            "price": 999,
+            "description": "iphone 12 red colour",
+            "image": "https://fdn2.gsmarena.com/vv/pics/oneplus/oneplus-9-pro-1.jpg",
+            "color": "grey"
+        },
+        {
+            "id": 10,
+            "name": "realme 8 pro",
+            "price": 999,
+            "description": "iphone 12 red colour",
+            "image": "https://fdn2.gsmarena.com/vv/pics/realme/realme-8-pro-ofic-1.jpg",
+            "color": "blue"
+        }
+    ]
+}
