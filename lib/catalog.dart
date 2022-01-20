@@ -1,14 +1,8 @@
 class catalogmodel {
-static final items = [
- item(
-  1, 
- "iphone 12", 
- 999, 
- "iphone 12 red colour 128 GB",
-  "https://3g.co.uk/userfiles/products/n_1433-1.jpg",
-  "OxFFD32F2F")
-];
+  static List<item> items = [
+  ];
 }
+
 class item {
   final num id;
   final String name;
@@ -17,5 +11,23 @@ class item {
   final String image;
   final String colour;
 
-  item(this.id, this.name, this.price, this.description, this.image, this.colour);
+  item({
+    required this.id,
+    required this.name,
+    required this.price,
+    required this.description,
+    required this.image,
+    required this.colour,
+  });
+
+  factory item.fromMap(Map<String, dynamic> map) {
+    return item(
+      id: map["id"],
+      name: map["name"],
+      price: map["price"],
+      description: map["description"],
+      image: map["image"],
+      colour: map["color"],
+    );
+  }
 }
