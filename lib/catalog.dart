@@ -30,4 +30,6 @@ class item {
       colour: map["color"],
     );
   }
+
+  get title => null;
 }
