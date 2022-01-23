@@ -1,7 +1,4 @@
 import 'dart:convert';
-import 'dart:math';
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application/catalog.dart';
@@ -62,13 +59,10 @@ class catalogheader extends StatelessWidget {
       children: [
         "Catalog App".text.bold.color(mythemes.myblue).xl5.make(),
         "Trending products".text.color(mythemes.myblue).xl2.make(),
-        if (catalogmodel.items != null && catalogmodel.items.isNotEmpty)
-          cataloglist().expand()
+        if ( catalogmodel.items.isNotEmpty)
+          const cataloglist().expand()
         else
-          Center(
-            
-            child: CircularProgressIndicator().py64(),
-          )
+          const CircularProgressIndicator().centered().expand(),
       ],
     );
   }
@@ -79,7 +73,7 @@ class cataloglist extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // ignore: dead_code, dead_code
+
     return ListView.builder(
         shrinkWrap: true,
         itemCount: catalogmodel.items.length,
@@ -103,32 +97,18 @@ class catalogitem extends StatelessWidget {
     return VxBox(
         child: Row(
       children: [
-
         catalogimage(image: catalog.image),
-       Expanded(   
-         child: 
-       Column(
-         crossAxisAlignment: CrossAxisAlignment.start,
-         mainAxisAlignment: MainAxisAlignment.center,
-         children: [
-           catalog.name.text.bold.color(mythemes.myblue).make().py8(),
-           catalog.description.text.make(),
-           ButtonBar(
-             children: [
-               "\$${catalog.price}".text.color(mythemes.myblue).xl.bold.make(),
-               ElevatedButton(onPressed: (){},
-               style: ButtonStyle(
-                 backgroundColor: 
-               MaterialStateProperty.all(mythemes.myblue)
-               ), 
-               child:
-                "Buy".text.make().py2()
-               )
-             ],
-           )
-         ],
-       )
-       )
+        Expanded(
+            child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            catalog.name.text.bold.color(mythemes.myblue).make().py8(),
+            catalog.description.text.make(),
+            
+            catalogprice(catalog: catalog)
+          ],
+        ))
       ],
     )).white.rounded.square(150).make().py12();
   }
@@ -140,8 +120,6 @@ class catalogimage extends StatelessWidget {
   const catalogimage({Key? key, required this.image}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-   
-    
     return Image.network(image)
         .box
         .color(mythemes.creamcolor)
@@ -153,14 +131,22 @@ class catalogimage extends StatelessWidget {
   }
 }
 
+class catalogprice extends StatelessWidget {
+  final item catalog;
 
-class catalogtitle extends StatelessWidget {
- final String name;
-
-  const catalogtitle({Key? key, required this.name}) : super(key: key);
-
+  const catalogprice({Key? key, required this.catalog}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Text(name);
+    return ButtonBar(
+      children: [
+        "\$${catalog.price}".text.color(mythemes.myblue).xl.bold.make(),
+        ElevatedButton(
+            onPressed: () {},
+            style: ButtonStyle(
+                shape: MaterialStateProperty.all(const StadiumBorder()),
+                backgroundColor: MaterialStateProperty.all(mythemes.myblue)),
+            child: "Buy".text.make().py2())
+      ],
+    );
   }
 }
