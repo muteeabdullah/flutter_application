@@ -2,10 +2,13 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application/catalog.dart';
+import 'package:flutter_application/utils/routes.dart';
 import 'package:flutter_application/widgets/itemwidget.dart';
 import 'package:flutter_application/widgets/mydrawer.dart';
 import 'package:flutter_application/widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+import 'detailspage.dart';
 
 class homepage extends StatefulWidget {
   const homepage({Key? key}) : super(key: key);
@@ -42,7 +45,7 @@ class _homepageState extends State<homepage> {
       body: SafeArea(
         child: Container(
           padding: Vx.m16,
-          child: catalogheader(),
+          child: catalogheader().py16(),
         ),
       ),
     );
@@ -59,7 +62,7 @@ class catalogheader extends StatelessWidget {
       children: [
         "Catalog App".text.bold.color(mythemes.myblue).xl5.make(),
         "Trending products".text.color(mythemes.myblue).xl2.make(),
-        if ( catalogmodel.items.isNotEmpty)
+        if (catalogmodel.items.isNotEmpty)
           const cataloglist().expand()
         else
           const CircularProgressIndicator().centered().expand(),
@@ -73,14 +76,19 @@ class cataloglist extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return ListView.builder(
         shrinkWrap: true,
         itemCount: catalogmodel.items.length,
         itemBuilder: (context, index) {
           final catalog = catalogmodel.items[index];
-          return catalogitem(
-            catalog: catalog,
+          return InkWell(
+            onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => Detailspage(catalog: catalog))),
+            child: catalogitem(
+              catalog: catalog,
+            ),
           );
         });
   }
@@ -97,7 +105,9 @@ class catalogitem extends StatelessWidget {
     return VxBox(
         child: Row(
       children: [
-        catalogimage(image: catalog.image),
+        Hero(
+            tag: Key(catalog.id.toString()),
+            child: catalogimage(image: catalog.image)),
         Expanded(
             child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -105,7 +115,6 @@ class catalogitem extends StatelessWidget {
           children: [
             catalog.name.text.bold.color(mythemes.myblue).make().py8(),
             catalog.description.text.make(),
-            
             catalogprice(catalog: catalog)
           ],
         ))
