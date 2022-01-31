@@ -1,10 +1,9 @@
 import 'dart:convert';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application/catalog.dart';
 import 'package:flutter_application/utils/routes.dart';
-import 'package:flutter_application/widgets/itemwidget.dart';
-import 'package:flutter_application/widgets/mydrawer.dart';
 import 'package:flutter_application/widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -17,6 +16,7 @@ class homepage extends StatefulWidget {
   State<homepage> createState() => _homepageState();
 }
 
+// ignore: camel_case_types
 class _homepageState extends State<homepage> {
   get itemBuilder => null;
 
@@ -27,12 +27,13 @@ class _homepageState extends State<homepage> {
   }
 
   loadData() async {
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2));
     var catalogJson = await rootBundle.loadString("assets/files/products.json");
     var decodedData = jsonDecode(catalogJson);
     var productsdata = decodedData["products"];
     // ignore: non_constant_identifier_names
     catalogmodel.items = List.from(productsdata)
+        // ignore: non_constant_identifier_names
         .map<item>((Item) => item.fromMap(Item))
         .toList();
     setState(() {});
@@ -41,11 +42,17 @@ class _homepageState extends State<homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: mythemes.creamcolor,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Navigator.pushNamed(context, Myroutes.cartroute),
+        child: const Icon(CupertinoIcons.cart),
+        backgroundColor: context.primaryColor,
+        foregroundColor: Colors.white,
+      ),
+      backgroundColor: context.cardColor,
       body: SafeArea(
         child: Container(
           padding: Vx.m16,
-          child: catalogheader().py16(),
+          child: catalogheader(),
         ),
       ),
     );
@@ -60,8 +67,10 @@ class catalogheader extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        "Catalog App".text.bold.color(mythemes.myblue).xl5.make(),
-        "Trending products".text.color(mythemes.myblue).xl2.make(),
+        // ignore: deprecated_member_use
+        "Catalog App".text.bold.color(context.theme.buttonColor).xl5.make(),
+        // ignore: deprecated_member_use
+        "Trending products".text.color(context.theme.buttonColor).xl2.make(),
         if (catalogmodel.items.isNotEmpty)
           const cataloglist().expand()
         else
@@ -80,7 +89,7 @@ class cataloglist extends StatelessWidget {
         shrinkWrap: true,
         itemCount: catalogmodel.items.length,
         itemBuilder: (context, index) {
-          final catalog = catalogmodel.items[index];
+          final catalog = catalogmodel.getByPos(index);
           return InkWell(
             onTap: () => Navigator.push(
                 context,
@@ -113,13 +122,13 @@ class catalogitem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            catalog.name.text.bold.color(mythemes.myblue).make().py8(),
+            catalog.name.text.bold.color(context.accentColor).make().py8(),
             catalog.description.text.make(),
             catalogprice(catalog: catalog)
           ],
         ))
       ],
-    )).white.rounded.square(150).make().py12();
+    )).color(context.canvasColor).rounded.square(150).make().py12();
   }
 }
 
@@ -131,7 +140,7 @@ class catalogimage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Image.network(image)
         .box
-        .color(mythemes.creamcolor)
+        .color(context.cardColor)
         .p4
         .rounded
         .make()
@@ -150,11 +159,13 @@ class catalogprice extends StatelessWidget {
       children: [
         "\$${catalog.price}".text.color(mythemes.myblue).xl.bold.make(),
         ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+            },
             style: ButtonStyle(
                 shape: MaterialStateProperty.all(const StadiumBorder()),
-                backgroundColor: MaterialStateProperty.all(mythemes.myblue)),
-            child: "Buy".text.make().py2())
+                backgroundColor:
+                    MaterialStateProperty.all(context.theme.primaryColor)),
+            child: "Add to Cart".text.make().py2())
       ],
     );
   }

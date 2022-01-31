@@ -13,25 +13,31 @@ class Detailspage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      bottomNavigationBar: Container(
-        color: Colors.amberAccent,
+      appBar: AppBar(
+        title: const Text('Details Page',style: TextStyle(
+        ),),
+     //   foregroundColor: context.canvasColor,
+        backgroundColor: context.cardColor,
+      ),
+      
+      bottomNavigationBar: 
+      Container(
+        color: context.canvasColor,
         child: ButtonBar(
           alignment: MainAxisAlignment.spaceBetween,
           children: [
             "\$${catalog.price}".text.xl3.bold.red900.make(),
             ElevatedButton(
-              
                 onPressed: () {},
                 style: ButtonStyle(
                     shape: MaterialStateProperty.all(const StadiumBorder()),
                     backgroundColor:
-                        MaterialStateProperty.all(mythemes.myblue)),
+                        MaterialStateProperty.all(context.theme.primaryColor)),
                 child: "Buy".text.xl.make())
           ],
         ).p24(),
       ),
-      backgroundColor: mythemes.creamcolor,
+      backgroundColor: context.cardColor,
       body: SafeArea(
         bottom: false,
         child: Column(
@@ -47,12 +53,12 @@ class Detailspage extends StatelessWidget {
               arcType: VxArcType.CONVEY,
               child: Container(
                 width: context.screenWidth,
-                color: Colors.amberAccent,
+                color: context.canvasColor,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    catalog.name.text.bold.xl4.color(mythemes.myblue).make(),
+                    catalog.name.text.bold.xl4.make(),
                     catalog.description.text.make(),
                   ],
                 ).py64(),
